@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+    <ActionBar title="Quit Smoking" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Progress Section -->
+            <StackLayout class="bg-green-100 rounded-lg p-4 mb-4">
+                <Label text="Your Progress" class="text-xl font-bold mb-2" />
+                <GridLayout columns="*, *" rows="auto, auto" class="text-center">
+                    <StackLayout col="0" row="0" class="p-2">
+                        <Label text="{{ daysSinceQuit }}" class="text-3xl font-bold text-green-600" />
+                        <Label text="Days Smoke-Free" class="text-sm text-gray-600" />
+                    </StackLayout>
+                    <StackLayout col="1" row="0" class="p-2">
+                        <Label text="€{{ moneySaved }}" class="text-3xl font-bold text-green-600" />
+                        <Label text="Money Saved" class="text-sm text-gray-600" />
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Challenges Section -->
+            <Label text="Daily Challenges" class="text-xl font-bold mb-2" />
+            <ListView items="{{ challenges }}" class="list-group" separatorColor="#ddd">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="p-4 border-b border-gray-200">
+                        <StackLayout col="0">
+                            <Label text="{{ title }}" class="font-bold" />
+                            <Label text="{{ description }}" class="text-gray-600" textWrap="true" />
+                            <Label text="Reward: €{{ reward }}" class="text-green-600" />
+                        </StackLayout>
+                        <Button col="1" 
+                                text="{{ completed ? '✓' : 'Complete' }}" 
+                                tap="onChallengeComplete"
+                                class="{{ completed ? 'bg-green-500' : 'bg-blue-500' }} text-white p-2 rounded"
+                                isEnabled="{{ !completed }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>
